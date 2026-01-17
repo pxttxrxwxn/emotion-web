@@ -365,36 +365,43 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen p-6 space-y-4">
-      <h1 className="text-2xl font-bold">Face Emotion (OpenCV + YOLO11-CLS)</h1>
+    <main className="min-h-screen p-6 space-y-4 bg-[#07234D] flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold font-[Mochiy_Pop_P_One] text-[#DF5E10]">Face Emotion (OpenCV + YOLO11-CLS)</h1>
 
-      <div className="space-y-2">
-        <div className="text-sm">สถานะ: {status}</div>
-        <div className="text-sm">
-          Emotion: <b>{emotion}</b> | Conf: <b>{(conf * 100).toFixed(1)}%</b>
+      <div className="w-3xl flex  items-end justify-between">
+        <div className="flex gap-5">
+          <div className="text-xl font-[Mochiy_Pop_P_One] bg-white px-2 py-1 text-[#DF5E10] rounded-xl">
+            Emotion : <b>{emotion}</b>
+          </div>
+          <div className="text-xl font-[Mochiy_Pop_P_One] bg-white px-2 py-1 text-[#DF5E10] rounded-xl">
+            Conf : <b>{(conf * 100).toFixed(1)} %</b>
+          </div>
         </div>
+        <div className="text-l font-[Prompt]">สถานะ: {status}</div>
+      </div>
+
+      <div className="relative w-full max-w-3xl bg-white rounded-2xl">
+        <video ref={videoRef} className="hidden" playsInline />
+        <canvas
+          ref={canvasRef}
+          className="w-full rounded"
+        />
+      </div>
+
+      <div className="w-3xl flex justify-items-start">
+        <p className="text-sm text-[#F82A2A] font-[Prompt]">
+          หมายเหตุ: ต้องกดปุ่ม Start เพื่อขอสิทธิ์เปิดกล้อง
+        </p>
       </div>
 
       <div className="flex gap-3">
         <button
-          className="px-4 py-2 rounded bg-black text-white"
+          className="px-8 py-4 rounded-full bg-[#DF5E10] text-white font-[Mochiy_Pop_P_One]"
           onClick={startCamera}
         >
           Start Camera
         </button>
       </div>
-
-      <div className="relative w-full max-w-3xl">
-        <video ref={videoRef} className="hidden" playsInline />
-        <canvas
-          ref={canvasRef}
-          className="w-full rounded border"
-        />
-      </div>
-
-      <p className="text-sm text-gray-600">
-        หมายเหตุ: ต้องกดปุ่ม Start เพื่อขอสิทธิ์เปิดกล้อง
-      </p>
     </main>
   );
 }
