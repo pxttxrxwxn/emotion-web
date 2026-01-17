@@ -69,6 +69,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as ort from "onnxruntime-web";
+import Image from "next/image";
 
 type CvType = any;
 
@@ -85,6 +86,16 @@ export default function Home() {
   const sessionRef = useRef<ort.InferenceSession | null>(null);
   const classesRef = useRef<string[] | null>(null);
 
+  const emotionImages: Record<string, string> = {
+    angry: "/image/angry.png",
+    disgust: "/image/disgust.png",
+    fear: "/image/fear.png",
+    happy: "/image/happy.png",
+    neutral: "/image/neutral.png",
+    sad: "/image/sad.png",
+    surprise: "/image/surprise.png",
+  };
+  const currentImageSrc = emotionImages[emotion] || "/image/neutral.png";
   // Load OpenCV.js
   // async function loadOpenCV() {
   //   if (typeof window === "undefined") return;
@@ -380,12 +391,24 @@ export default function Home() {
         <div className="text-l font-[Prompt]">สถานะ: {status}</div>
       </div>
 
-      <div className="relative w-full max-w-3xl bg-white rounded-2xl">
-        <video ref={videoRef} className="hidden" playsInline />
-        <canvas
-          ref={canvasRef}
-          className="w-full rounded"
-        />
+      <div className="w-full flex  items-center justify-around">
+        <div className="relative w-full max-w-3xl bg-white rounded-2xl">
+          <video ref={videoRef} className="hidden" playsInline />
+          <canvas
+            ref={canvasRef}
+            className="w-full rounded"
+          />
+        </div>
+        <div className="flex items-center justify-center">
+          <Image
+            key={emotion}
+            src={currentImageSrc}
+            alt={emotion}
+            width={300}
+            height={300}
+            className="object-contain transition-all duration-300"
+          />
+        </div>
       </div>
 
       <div className="w-3xl flex justify-items-start">
