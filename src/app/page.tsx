@@ -377,9 +377,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-6 space-y-4 bg-[#07234D] flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold font-[Mochiy_Pop_P_One] text-[#DF5E10]">Face Emotion (OpenCV + YOLO11-CLS)</h1>
+      <h1 className="text-3xl font-bold font-[Mochiy_Pop_P_One] text-[#DF5E10] mb-8">Face Emotion (OpenCV + YOLO11-CLS)</h1>
 
-      <div className="w-3xl flex  items-end justify-between">
+      <div className="w-6xl flex  items-end">
         <div className="flex gap-5">
           <div className="text-xl font-[Mochiy_Pop_P_One] bg-white px-2 py-1 text-[#DF5E10] rounded-xl">
             Emotion : <b>{emotion}</b>
@@ -388,10 +388,10 @@ export default function Home() {
             Conf : <b>{(conf * 100).toFixed(1)} %</b>
           </div>
         </div>
-        <div className="text-l font-[Prompt]">สถานะ: {status}</div>
+        <div className="text-l font-[Prompt] ml-52">สถานะ: {status}</div>
       </div>
 
-      <div className="w-full flex  items-center justify-around">
+      <div className="w-full flex  items-center justify-center gap-20">
         <div className="relative w-full max-w-3xl bg-white rounded-2xl">
           <video ref={videoRef} className="hidden" playsInline />
           <canvas
@@ -406,18 +406,18 @@ export default function Home() {
             alt={emotion}
             width={300}
             height={300}
-            className="object-contain transition-all duration-300"
+            className="object-contain transition-all duration-300 rounded-2xl"
           />
         </div>
       </div>
 
-      <div className="w-3xl flex justify-items-start">
+      <div className="w-5xl flex justify-items-start">
         <p className="text-sm text-[#F82A2A] font-[Prompt]">
           หมายเหตุ: ต้องกดปุ่ม Start เพื่อขอสิทธิ์เปิดกล้อง
         </p>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 w-xl">
         <button
           className="px-8 py-4 rounded-full bg-[#DF5E10] text-white font-[Mochiy_Pop_P_One]"
           onClick={startCamera}
